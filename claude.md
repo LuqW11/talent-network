@@ -2,6 +2,15 @@
 
 When writing code, strictly follow these fundamental software engineering principles:
 
+# Project
+
+- This is a T3 project
+- mobile-first development. Make sure everything works on mobile before bigger screens
+- Make sure to separate everything out clearly
+- For styles, use shadcn. For styling use tailwind
+- Add all components in src/components
+- Add all types in src/types
+
 ## Core Philosophy
 
 **KISS (Keep It Simple, Stupid)**
@@ -56,7 +65,7 @@ When writing code, strictly follow these fundamental software engineering princi
 Presentation → Application → Domain → Infrastructure
 ```
 
-## Ci/Cd patterns
+## Ci/Cd principles
 
 - never commit to main/master. Always create a PR
 - regularly commit your changes to your branch
