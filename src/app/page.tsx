@@ -1,37 +1,44 @@
-import Link from "next/link";
+import WaitlistForm from "~/components/WaitlistForm";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+    <main className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="max-w-2xl mx-auto px-6 pt-20 pb-16 text-center">
+        <h1 className="text-5xl font-bold text-black mb-6">
+          Talent Wharf
         </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+        <p className="text-xl text-gray-600 mb-6">
+          Selective introductions to high growth, well-funded teams
+        </p>
+        <p className="text-sm text-gray-500 mb-12">
+          Join the waitlist
+        </p>
+
+        {/* Form */}
+        <WaitlistForm />
+        
+        {/* Trust Strip */}
+        <div className="flex items-center justify-center space-x-8 text-sm font-medium text-gray-400 mt-12">
+          <span>a16z</span>
+          <span>•</span>
+          <span>Sequoia</span>
+          <span>•</span>
+          <span>Index</span>
+          <span>•</span>
+          <span>GC</span>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-100 py-12">
+        <div className="text-center">
+          <div className="space-x-8 text-xs text-gray-400">
+            <a href="/privacy" className="hover:text-gray-600">Privacy</a>
+            <a href="/terms" className="hover:text-gray-600">Terms</a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
