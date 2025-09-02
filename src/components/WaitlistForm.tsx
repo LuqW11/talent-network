@@ -1,5 +1,6 @@
 "use client";
 
+// Waitlist form with two-step flow and UK university search
 import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
