@@ -18,11 +18,13 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "@t3-oss/env-nextjs": "^0.12.0",
+    "clsx": "^2.1.1",
     "firebase": "^12.2.1",
     "next": "^15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.62.0",
+    "tailwind-merge": "^3.3.1",
     "typesaurus": "^10.7.0",
     "zod": "^3.24.2"
   },

@@ -36,6 +36,14 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  
+  .motion-safe\:hover\:-translate-y-0\.5:hover { 
+    transform: none !important; 
+  }
+  
+  .motion-safe\:transition-transform { 
+    transition: none !important; 
+  }
 }
 
 /* Screen reader only */
@@ -67,4 +75,100 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
+}
+
+/* Chip styles */
+.chip { 
+  @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500; 
+}
+
+.chip--on { 
+  @apply bg-gray-900 text-white border-gray-900; 
+}
+
+.chip--off { 
+  @apply bg-white text-gray-900 border-gray-200; 
+}
+
+/* Snackbar positioning */
+.snackbar-wrap { 
+  @apply fixed z-50 bottom-4 left-1/2 -translate-x-1/2 sm:right-4 sm:left-auto sm:translate-x-0; 
+}
+
+/* Button animations */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.6s ease-out;
+}
+
+/* Enhanced reduced motion support for button animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ripple {
+    animation: none !important;
+  }
+  
+  .motion-safe\:hover\:before\:translate-x-\[100\%\]:hover::before {
+    transform: none !important;
+  }
+
+  .animate-fade-in-up {
+    animation: none !important;
+  }
+
+  .animate-float {
+    animation: none !important;
+  }
+}
+
+/* Service page animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
 }
