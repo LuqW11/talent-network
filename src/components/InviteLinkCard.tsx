@@ -122,7 +122,7 @@ export default function InviteLinkCard() {
 
         {shareSupported ? (
           <Button
-            variant="secondary"
+            variant="outline"
             size="sm"
             onClick={handleShare}
           >

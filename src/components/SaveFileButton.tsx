@@ -33,7 +33,7 @@ export default function SaveFileButton({
 
   return (
     <Button 
-      variant="secondary" 
+      variant="outline" 
       size="sm" 
       onClick={handleSave} 
       className={className}

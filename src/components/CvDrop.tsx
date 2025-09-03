@@ -148,7 +148,7 @@ export default function CvDrop({ value, onChange, error }: CvDropProps) {
               Replace
             </Button>
             <Button
-              variant="secondary"
+              variant="outline"
               size="sm"
               type="button"
               onClick={handleRemove}

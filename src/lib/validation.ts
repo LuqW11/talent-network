@@ -37,7 +37,7 @@ export const step2Schema = z.object({
   proofOfWork: z.array(z.object({
     url: z.string().url('Enter a valid URL').optional().or(z.literal("")),
     note: z.string().max(280, 'Max 280 characters').optional().or(z.literal("")),
-  })).max(2, 'You can add up to two items').default([]),
+  })).max(2, 'You can add up to two items').optional(),
 });
 
 export const RoleLaneEnum = z.enum(['Backend SWE', 'ML Platform', 'Data Eng', 'Platform-SRE', 'Solutions Eng']);
@@ -45,7 +45,7 @@ export const RoleLaneEnum = z.enum(['Backend SWE', 'ML Platform', 'Data Eng', 'P
 export const StepInterestsSchema = z.object({
   domainInterests: z.array(z.string()).min(1, 'Pick at least one domain').max(3, 'Pick up to 3'),
   roleInterests: z.array(RoleLaneEnum).min(1, 'Select at least one role').max(3, 'Select up to 3'),
-  skills: z.array(z.string().min(2).max(20)).max(10, 'Select up to 10').optional().default([]),
+  skills: z.array(z.string().min(2).max(20)).max(10, 'Select up to 10'),
   dreamStartups: z.string().max(200).optional(),
 });
 

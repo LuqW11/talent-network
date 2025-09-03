@@ -128,9 +128,9 @@ export default function ProofOfWork() {
                   </div>
                 )}
               </div>
-              {errors.proofOfWork?.[index] && typeof errors.proofOfWork[index] === 'object' && 'url' in errors.proofOfWork[index] && (
+              {(errors.proofOfWork as any)?.[index] && (
                 <p className="mt-1 text-sm text-red-600">
-                  {(errors.proofOfWork[index] as any).url?.message}
+                  {(errors.proofOfWork as any)?.[index]?.url?.message}
                 </p>
               )}
             </div>
@@ -148,9 +148,9 @@ export default function ProofOfWork() {
                 maxLength={280}
               />
               <div className="flex items-center justify-between mt-1">
-                {errors.proofOfWork?.[index] && typeof errors.proofOfWork[index] === 'object' && 'note' in errors.proofOfWork[index] && (
+                {(errors.proofOfWork as any)?.[index]?.note && (
                   <p className="text-sm text-red-600">
-                    {(errors.proofOfWork[index] as any).note?.message}
+                    {(errors.proofOfWork as any)?.[index]?.note?.message}
                   </p>
                 )}
                 <span className={`text-xs ${remainingChars < 0 ? 'text-red-500' : 'text-gray-500'} ml-auto`}>
