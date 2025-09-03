@@ -1,3 +1,3 @@
 # Talent Search Agency
 
-We connected highly-talented students with startups
+We connect highly-talented students with startups
