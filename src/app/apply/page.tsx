@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import WaitlistForm from "~/components/WaitlistForm";
 import { pickParams } from "~/lib/utm";
 
-export default function ApplyPage() {
+function ApplyPageContent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -48,5 +48,17 @@ export default function ApplyPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ApplyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    }>
+      <ApplyPageContent />
+    </Suspense>
   );
 }
