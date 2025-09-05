@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { WaitlistService } from "~/lib/waitlist-service";
 import { 
   step1Schema, 
   step2Schema, 
@@ -136,6 +137,7 @@ export default function WaitlistForm() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   };
 
+
   const handleStep1Submit = (data: Step1Data) => {
     setIsTransitioning(true);
     setStep1Data(data);
@@ -159,17 +161,55 @@ export default function WaitlistForm() {
     }, 300);
   };
 
-  const handleStep3Submit = async (_data: StepInterestsData) => {
+
+
+  const handleStep3Submit = async (data: StepInterestsData) => {
     setIsSubmitting(true);
     saveFormData();
     
-    // Mock API delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    localStorage.removeItem(STORAGE_KEY);
-    setStep("success");
-    setIsSubmitting(false);
+    try {
+      // Combine all form data
+      const completeData = {
+        ...step1Data!,
+        ...step2Data!,
+        ...data
+      };
+  
+      // Check if we have a CV file to upload
+      const cvMeta = step2Form.getValues("cvMeta");
+      const hasCV = cvMeta && cvMeta.hash;
+      
+      if (hasCV) {
+        // For now, just submit without CV upload since we need the actual file
+        // You can extend this later to handle file uploads
+        const result = await WaitlistService.submitApplication(completeData);
+        
+        if (result.success) {
+          localStorage.removeItem(STORAGE_KEY);
+          setStep("success");
+        } else {
+          alert(`Error: ${result.error}`);
+        }
+      } else {
+        // No CV - simple submission
+        const result = await WaitlistService.submitApplication(completeData);
+        
+        if (result.success) {
+          localStorage.removeItem(STORAGE_KEY);
+          setStep("success");
+        } else {
+          alert(`Error: ${result.error}`);
+        }
+      }
+      
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   const handleBackToStep1 = () => {
     setIsTransitioning(true);
