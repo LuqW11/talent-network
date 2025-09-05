@@ -184,15 +184,12 @@ export default function WaitlistForm() {
         // You can extend this later to handle file uploads
         const result = await WaitlistService.submitApplication(completeData);
         
-
-        if (result && result.success) {
+        if (result.success) {
           localStorage.removeItem(STORAGE_KEY);
           setStep("success");
         } else {
-          alert(`Error: ${result?.error || 'Unknown error occurred'}`);
+          alert(`Error: ${result.error}`);
         }
-
-        
       } else {
         // No CV - simple submission
         const result = await WaitlistService.submitApplication(completeData);

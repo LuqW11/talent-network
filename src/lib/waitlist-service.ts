@@ -3,41 +3,40 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from './firebase';
 
 export interface WaitlistSubmission {
-    // Step 1 - Basic Details
-    firstName: string;
-    lastName: string;
-    email: string;
-    linkedinUrl?: string | undefined;
-    gdprConsent: boolean;
-    
-    // Step 2 - Education & Professional
-    university: string;  // Required by form validation
-    gradYear: number;    // Required by form validation
-    location: string;    // Required by form validation
-    rightToWork: string; // Required by form validation
-    visaType?: string | undefined;
-    visaExpiry?: string | undefined;
-    githubUrl?: string | undefined;
-    proofOfWork?: Array<{
-      url?: string;
-      note?: string;
-    }> | undefined;
-    
-    // Step 3 - Interests & Skills
-    domainInterests: string[];  // Required by form validation
-    roleInterests: string[];    // Required by form validation
-    skills: string[];           // Required by form validation
-    dreamStartups?: string | undefined;
-    
-    // Metadata
-    submittedAt?: any; // Firestore timestamp
-    referralToken?: string | undefined;
-    utmSource?: string | undefined;
-    utmMedium?: string | undefined;
-    utmCampaign?: string | undefined;
-  }
-
+  // Step 1 - Basic Details
+  firstName: string;
+  lastName: string;
+  email: string;
+  linkedinUrl?: string | undefined;
+  gdprConsent: boolean;
   
+  // Step 2 - Education & Professional
+  university?: string;
+  gradYear?: number;
+  location?: string;
+  rightToWork?: string;
+  visaType?: string;
+  visaExpiry?: string;
+  githubUrl?: string;
+  proofOfWork?: Array<{
+    url?: string;
+    note?: string;
+  }>;
+  
+  // Step 3 - Interests & Skills
+  domainInterests?: string[];
+  roleInterests?: string[];
+  skills?: string[];
+  dreamStartups?: string;
+  
+  // Metadata
+  submittedAt?: any; // Firestore timestamp
+  referralToken?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+}
+
 export class WaitlistService {
   /**
    * Submit waitlist application to Firestore
